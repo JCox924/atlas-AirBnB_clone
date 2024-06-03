@@ -1,9 +1,20 @@
 #!/usr/bin/python3
 import unittest
 from models.base_model import BaseModel
+from models import storage
 from datetime import datetime
+import os
 
 class TestBaseModel(unittest.TestCase):
+    def setUp(self):
+        storage._FileStorage__objects = {}
+        if os.path.exists(storage._FileStorage__file_path):
+            os.remove(storage._FileStorage__file_path)
+
+    def tearDown(self):
+        if os.path.exists(storage._FileStorage__file_path):
+            os.remove(storage._FileStorage__file_path)
+
     def test_init(self):
         obj = BaseModel()
         self.assertIsInstance(obj, BaseModel)
@@ -36,6 +47,17 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(obj.created_at, new_obj.created_at)
         self.assertEqual(obj.updated_at, new_obj.updated_at)
         self.assertEqual(obj.__class__, new_obj.__class__)
+
+    def test_storage_save_reload(self):
+        obj = BaseModel()
+        obj.save()
+        storage.save()
+        storage.reload()
+        key = f"BaseModel.{obj.id}"
+        self.assertIn(key, storage.all())
+        self.assertEqual(obj.id, storage.all()[key].id)
+        self.assertEqual(obj.created_at, storage.all()[key].created_at)
+        self.assertEqual(obj.updated_at, storage.all()[key].updated_at)
 
 if __name__ == "__main__":
     unittest.main()
