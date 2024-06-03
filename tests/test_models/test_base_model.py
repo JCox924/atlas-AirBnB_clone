@@ -24,5 +24,10 @@ class TestBaseModel(unittest.TestCase):
         obj.save()
         self.assertNotEqual(obj.updated_at, old_updated_at)
 
+	def test_str(self):
+		obj = BaseModel()
+		expected_str = f"[BseModel] ({obj.id}) {obj.__dict__}"
+		self.assertEqual(str(obj), expected_str)
+
 if __name__ == "__main__":
     unittest.main()
