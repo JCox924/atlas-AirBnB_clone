@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-import cmd
 
 """
 This module contains the entry point for the command interpreter
 for the AirBnB clone project.
 """
+
+import cmd
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for the AirBnB clone project"""
