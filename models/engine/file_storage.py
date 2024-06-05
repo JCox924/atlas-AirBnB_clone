@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 class FileStorage:
     """Serializes instances to a JSON file and deserializes JSON file to instances"""
@@ -28,7 +34,9 @@ class FileStorage:
             with open(self.__file_path, 'r') as file:
                 obj_dict = json.load(file)
                 for key, value in obj_dict.items():
-                    obj = BaseModel(**value)
-                    self.__objects[key] = obj
+                    cls_name = value['__class__']
+                    cls = globals().get(cls_name)
+                    if cls:
+                        self.__objects[key] = cls(**value)
         except FileNotFoundError:
             pass

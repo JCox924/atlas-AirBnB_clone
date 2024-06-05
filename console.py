@@ -6,6 +6,12 @@ for the AirBnB clone project.
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
@@ -13,10 +19,16 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     classes = {
         'BaseModel': BaseModel,
+        'User': User,
+        'State': State,
+        'City': City,
+        'Place': Place,
+        'Amenity': Amenity,
+        'Review': Review,
     }
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id"""
+        """Creates a new instance of BaseModel, User, State, City, Place, Amenity, or Review, saves it (to the JSON file) and prints the id"""
         if not arg:
             print("** class name missing **")
             return
