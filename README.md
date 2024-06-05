@@ -1,55 +1,105 @@
-# AirBnB Clone
+# AirBnB Clone Project
 
-Welcome to the AirBnB clone project! This project is a simplified version of the AirBnB web application, focusing on backend development and command-line interface (CLI) management.
+## Description
+This project is an AirBnB clone, developed as part of the Atlas School curriculum. The goal is to build a full web application, encompassing front-end and back-end development, database storage, and API integration. The project starts with the development of a command interpreter to manage the AirBnB objects, such as users, states, cities, places, amenities, and reviews.
 
-## Project Overview
+## Command Interpreter
+The command interpreter is a console application that allows users to create, update, destroy, and manage various objects within the AirBnB clone. It provides a way to interact with the application via a command-line interface.
 
-This project involves building a command interpreter to manage AirBnB objects. The main goal is to create a robust backend for an AirBnB-like service, which includes the following key features:
-
-- Create, update, delete, and manage different objects such as users, places, and states.
-- Serialize and deserialize objects to and from JSON format.
-- Store and retrieve objects from a file.
-
-## Features
-
-- **Command Interpreter:** A CLI tool to interact with the backend.
-- **BaseModel Class:** A parent class that handles initialization, serialization, and deserialization.
-- **File Storage:** A simple file-based storage engine to save and load objects.
-- **Unit Tests:** Comprehensive tests to ensure the correctness of the code.
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8.5 or higher
-- Ubuntu 20.04 LTS (recommended)
-
-### Installation
-
-1. Clone the repository:
-
+### How to Start It
+1. Clone the repository to your local machine:
     ```sh
-    git clone https://github.com/yourusername/AirBnB_clone.git
-    cd AirBnB_clone
+    git clone https://github.com/JCox924/atlas-AirBnB_clone
+    cd atlas-AirBnB_clone
     ```
 
-2. Make sure all Python files are executable:
-
+2. Make the `console.py` script executable:
     ```sh
     chmod +x console.py
     ```
 
-### Usage
+3. Start the command interpreter:
+    ```sh
+    ./console.py
+    ```
 
-#### Running the Command Interpreter
+### How to Use It
+The command interpreter supports several commands to manage the application objects. Here is a list of available commands and their usage:
 
-To start the command interpreter, run:
+- **help** or **?**
+    - Displays a list of available commands or detailed help for a specific command.
+    ```sh
+    (hbnb) help
+    (hbnb) help <command>
+    ```
 
-```sh
-./console.py
+- **quit** or **EOF**
+    - Exits the command interpreter.
+    ```sh
+    (hbnb) quit
+    (hbnb) EOF
+    ```
 
-### Contact
+- **create <class>**
+    - Creates a new instance of a class, saves it to the JSON file, and prints the ID.
+    ```sh
+    (hbnb) create User
+    ```
 
-Joshua Cox email: joshua.cox@atlasschool.com
+- **show <class> <id>**
+    - Prints the string representation of an instance based on the class name and ID.
+    ```sh
+    (hbnb) show User 1234-1234-1234
+    ```
 
-P.S. This project as of 20240603 only has the console functionality, more features will be coming soon!
+- **destroy <class> <id>**
+    - Deletes an instance based on the class name and ID.
+    ```sh
+    (hbnb) destroy User 1234-1234-1234
+    ```
+
+- **all [<class>]**
+    - Prints all string representations of all instances, or all instances of a specific class.
+    ```sh
+    (hbnb) all
+    (hbnb) all User
+    ```
+
+- **update <class> <id> <attribute name> "<attribute value>"**
+    - Updates an instance based on the class name and ID by adding or updating an attribute.
+    ```sh
+    (hbnb) update User 1234-1234-1234 email "aibnb@mail.com"
+    ```
+
+### Examples
+Here are some examples of how to use the command interpreter:
+
+- **Creating a new User**
+    ```sh
+    (hbnb) create User
+    6f0c4e8e-b33f-4b22-bc17-86cf1d938908
+    ```
+
+- **Showing a User instance**
+    ```sh
+    (hbnb) show User 6f0c4e8e-b33f-4b22-bc17-86cf1d938908
+    [User] (6f0c4e8e-b33f-4b22-bc17-86cf1d938908) {'id': '6f0c4e8e-b33f-4b22-bc17-86cf1d938908', 'created_at': '2024-01-01T12:00:00', 'updated_at': '2024-01-01T12:00:00', 'email': '', 'password': '', 'first_name': '', 'last_name': ''}
+    ```
+
+- **Updating a User instance**
+    ```sh
+    (hbnb) update User 6f0c4e8e-b33f-4b22-bc17-86cf1d938908 email "aibnb@mail.com"
+    ```
+
+- **Destroying a User instance**
+    ```sh
+    (hbnb) destroy User 6f0c4e8e-b33f-4b22-bc17-86cf1d938908
+    ```
+
+- **Showing all User instances**
+    ```sh
+    (hbnb) all User
+    ```
+
+The command interpreter is a powerful tool to manage the objects within the AirBnB clone project. You can use it to create, read, update, and delete objects, making it essential for interacting with the application backend.
+
