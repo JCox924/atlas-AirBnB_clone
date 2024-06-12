@@ -1,0 +1,27 @@
+/*Style Sheet for the Places*/
+section.places {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+section.places h1 {
+    font-size: 30px;
+    width: 100%;
+}
+
+section.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: solid 1px #FF5A5F;
+    border-radius: 4px;
+}
+
+section.places h2 {
+    text-align: center;
+    font-size: 30px;
+}
